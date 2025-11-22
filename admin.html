@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ Панел - Back Office</title>
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        /* Layout Container */
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background-color: #ffffff;
+            border-right: 1px solid #e1e8ed;
+            padding: 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .sidebar-header {
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .sidebar-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-header p {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* Quick Access Section */
+        .quick-access {
+            padding: 20px;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .quick-access h3 {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #95a5a6;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .btn-to-pos {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(17, 153, 142, 0.25);
+            margin-bottom: 8px;
+        }
+
+        .btn-to-pos:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(17, 153, 142, 0.35);
+        }
+
+        .btn-to-pos i {
+            margin-right: 8px;
+        }
+
+        .btn-home {
+            display: block;
+            width: 100%;
+            padding: 10px 16px;
+            background: #ecf0f1;
+            color: #34495e;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 400;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-home:hover {
+            background: #d5dbdb;
+        }
+
+        .btn-home i {
+            margin-right: 8px;
+        }
+
+        /* Menu Groups */
+        .menu-group {
+            padding: 20px 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .menu-group:last-child {
+            border-bottom: none;
+        }
+
+        .menu-group-title {
+            padding: 0 20px 12px 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #4a5568;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: #5a6c7d;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            position: relative;
+            font-size: 14px;
+        }
+
+        .menu-item i {
+            width: 24px;
+            margin-right: 12px;
+            font-size: 16px;
+            color: #95a5a6;
+            transition: color 0.2s ease;
+        }
+
+        .menu-item:hover {
+            background-color: #e3f2fd;
+            color: #2196f3;
+            padding-left: 24px;
+        }
+
+        .menu-item:hover i {
+            color: #2196f3;
+        }
+
+        /* Notification Badges */
+        .badge {
+            margin-left: auto;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            min-width: 22px;
+            text-align: center;
+        }
+
+        .badge-danger {
+            background-color: #e74c3c;
+            box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
+        }
+
+        .badge-success {
+            background-color: #27ae60;
+            box-shadow: 0 2px 6px rgba(39, 174, 96, 0.3);
+        }
+
+        .badge-warning {
+            background-color: #f39c12;
+            box-shadow: 0 2px 6px rgba(243, 156, 18, 0.3);
+        }
+
+        .badge-info {
+            background-color: #3498db;
+            box-shadow: 0 2px 6px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 40px;
+        }
+
+        .content-header {
+            margin-bottom: 30px;
+        }
+
+        .content-header h2 {
+            font-size: 32px;
+            color: #2c3e50;
+            font-weight: 300;
+            margin-bottom: 8px;
+        }
+
+        .content-header p {
+            color: #7f8c8d;
+            font-size: 15px;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #95a5a6;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .card-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .card-footer {
+            font-size: 13px;
+            color: #7f8c8d;
+        }
+
+        .card-icon {
+            float: right;
+            font-size: 48px;
+            opacity: 0.15;
+            margin-top: -10px;
+        }
+
+        /* Scrollbar Styling */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fas fa-store"></i> ТЪРГОВСКА СИСТЕМА</h1>
+                <p>Административен панел</p>
+            </div>
+
+            <!-- Quick Access -->
+            <div class="quick-access">
+                <h3>Бърз достъп</h3>
+                <a href="pos.html" class="btn-to-pos">
+                    <i class="fas fa-cash-register"></i> Към КАСА
+                </a>
+                <a href="#" class="btn-home">
+                    <i class="fas fa-home"></i> Начало
+                </a>
+            </div>
+
+            <!-- Products Group -->
+            <nav class="menu-group">
+                <div class="menu-group-title">ПРОДУКТИ</div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-box"></i> Продукти
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-plus-circle"></i> Добави нов
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-tags"></i> Цени
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-percentage"></i> Промоции
+                    <span class="badge badge-warning">5</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-list"></i> Категории
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-truck"></i> Доставчици
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-barcode"></i> Етикети
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-trash-alt"></i> Кошче
+                </a>
+            </nav>
+
+            <!-- Warehouse Group -->
+            <nav class="menu-group">
+                <div class="menu-group-title">СКЛАД</div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-dolly"></i> Доставки
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-clipboard-list"></i> Заявки
+                    <span class="badge badge-success">12</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-exclamation-triangle"></i> Бракувани стоки
+                    <span class="badge badge-danger">3</span>
+                </a>
+            </nav>
+
+            <!-- Analysis Group -->
+            <nav class="menu-group">
+                <div class="menu-group-title">АНАЛИЗ</div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-warehouse"></i> Наличности
+                    <span class="badge badge-info">24</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-chart-line"></i> Продажби
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-clipboard-check"></i> Ревизии
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-boxes"></i> Непродаваеми продукти
+                </a>
+            </nav>
+
+            <!-- System Group -->
+            <nav class="menu-group">
+                <div class="menu-group-title">СИСТЕМА</div>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-cog"></i> Настройки
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-users"></i> Потребители
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-wrench"></i> Поддръжка
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h2>Добре дошли в административния панел</h2>
+                <p>Преглед на основните показатели и бърз достъп до ключови функции</p>
+            </div>
+
+            <div class="dashboard-cards">
+                <div class="card">
+                    <i class="fas fa-shopping-cart card-icon"></i>
+                    <h3>Продажби днес</h3>
+                    <div class="card-value">2,847 лв</div>
+                    <div class="card-footer">+15% от вчера</div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-receipt card-icon"></i>
+                    <h3>Брой сметки</h3>
+                    <div class="card-value">143</div>
+                    <div class="card-footer">Последна: преди 5 мин</div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-box-open card-icon"></i>
+                    <h3>Артикули в склада</h3>
+                    <div class="card-value">1,247</div>
+                    <div class="card-footer">24 под минимум</div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-clock card-icon"></i>
+                    <h3>Активни заявки</h3>
+                    <div class="card-value">12</div>
+                    <div class="card-footer">3 изискват внимание</div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
