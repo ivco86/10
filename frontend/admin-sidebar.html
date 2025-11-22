@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ Панел - Странично Меню</title>
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        /* Sidebar Container */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #ffffff;
+            border-right: 1px solid #e5e7eb;
+            overflow-y: auto;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        /* Scrollbar Styling */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Top Links Section */
+        .top-links {
+            padding: 15px 0;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .top-link {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: #1e40af;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .top-link:hover {
+            background-color: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding-left: 16px;
+        }
+
+        .top-link i {
+            font-size: 20px;
+            margin-right: 12px;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Menu Groups */
+        .menu-group {
+            margin-top: 5px;
+        }
+
+        .menu-header {
+            background-color: #3b82f6;
+            color: #ffffff;
+            padding: 12px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .menu-items {
+            background-color: #f3f4f6;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: #1e3a8a;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .menu-link:hover {
+            background-color: #e0e7ff;
+            border-left-color: #3b82f6;
+            padding-left: 16px;
+        }
+
+        .menu-link i {
+            font-size: 15px;
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+            color: #3b82f6;
+        }
+
+        /* Active State (optional) */
+        .menu-link.active {
+            background-color: #dbeafe;
+            border-left-color: #3b82f6;
+            font-weight: 600;
+        }
+
+        /* Demo content area */
+        .content-area {
+            margin-left: 250px;
+            padding: 30px;
+        }
+
+        .content-area h1 {
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .content-area p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <!-- Top Links -->
+        <div class="top-links">
+            <a href="#" class="top-link">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>КАСА</span>
+            </a>
+            <a href="#" class="top-link">
+                <i class="fa-solid fa-house"></i>
+                <span>НАЧАЛО</span>
+            </a>
+        </div>
+
+        <!-- Group 1: ПРОДУКТИ -->
+        <div class="menu-group">
+            <div class="menu-header">ПРОДУКТИ</div>
+            <div class="menu-items">
+                <a href="#" class="menu-link active">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Продукти</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-plus-circle"></i>
+                    <span>Добави нов продукт</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-tags"></i>
+                    <span>Бързи цени</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-calendar-xmark"></i>
+                    <span>Срок на годност</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-percent"></i>
+                    <span>Промоции</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Категории</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-industry"></i>
+                    <span>Производители</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-truck"></i>
+                    <span>Доставчици</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-tag"></i>
+                    <span>Етикети</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-money-bill-trend-up"></i>
+                    <span>Промяна на цени</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span>Кошче</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Group 2: МАГАЗИНИ -->
+        <div class="menu-group">
+            <div class="menu-header">МАГАЗИНИ</div>
+            <div class="menu-items">
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <span>Баланс при приключване</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Group 3: СТОКИ -->
+        <div class="menu-group">
+            <div class="menu-header">СТОКИ</div>
+            <div class="menu-items">
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                    <span>Доставки</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span>Отписани продукти</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <span>Списък заявки</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Group 4: СТАТИСТИКИ -->
+        <div class="menu-group">
+            <div class="menu-header">СТАТИСТИКИ</div>
+            <div class="menu-items">
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-warehouse"></i>
+                    <span>Наличности</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Статистики</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>Проблеми</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-ban"></i>
+                    <span>Непродаваеми продукти</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Group 5: ПОДДРЪЖКА -->
+        <div class="menu-group">
+            <div class="menu-header">ПОДДРЪЖКА</div>
+            <div class="menu-items">
+                <a href="#" class="menu-link">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <span>Поддръжка</span>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Demo Content Area -->
+    <div class="content-area">
+        <h1>Добре дошли в Админ Панела</h1>
+        <p>Това е демонстрационна област за съдържание. Страничното меню е фиксирано отляво и е напълно функционално.</p>
+        <p>Hover ефектът показва цветна черта отляво и по-светъл фон при преминаване с мишката.</p>
+        <p><strong>Особености:</strong></p>
+        <ul style="margin-top: 15px; line-height: 2; color: #64748b;">
+            <li>✅ Чист HTML и CSS (без JavaScript)</li>
+            <li>✅ FontAwesome икони</li>
+            <li>✅ Responsive hover ефекти</li>
+            <li>✅ Групирани секции с цветни заглавия</li>
+            <li>✅ Удобен padding за четене</li>
+            <li>✅ Плавни transitions</li>
+            <li>✅ Персонализиран scrollbar</li>
+        </ul>
+    </div>
+</body>
+</html>

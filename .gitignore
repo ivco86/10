@@ -1,0 +1,12 @@
+# Ignore Python Virtual Environments
+backend/post/
+venv/
+env/
+.env
+
+# Ignore Compiled Python files
+__pycache__/
+*.pyc
+
+# Ignore Node Modules (for your frontend)
+frontend/node_modules/
