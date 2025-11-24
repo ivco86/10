@@ -9,6 +9,7 @@ import { Products } from './pages/Products';
 import { ProductDetails } from './pages/ProductDetails';
 import { Suppliers } from './pages/Suppliers';
 import { SupplierDetails } from './pages/SupplierDetails';
+import { AIChat } from './pages/AIChat';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuthStore();
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="pos" element={<POS />} />
           <Route path="products" element={<Products />} />
           <Route path="suppliers" element={<Suppliers />} />
+          <Route path="ai-chat" element={<AIChat />} />
         </Route>
         <Route path="/products/:id" element={<PrivateRoute><ProductDetails /></PrivateRoute>} />
         <Route path="/suppliers/:id" element={<PrivateRoute><SupplierDetails /></PrivateRoute>} />

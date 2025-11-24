@@ -37,6 +37,15 @@ export function Layout() {
             <i className="fa-solid fa-house text-xl w-6 text-center mr-3"></i>
             <span className="font-semibold text-base">НАЧАЛО</span>
           </Link>
+          <Link
+            to="/ai-chat"
+            className={`flex items-center px-5 py-3 mx-2 rounded text-purple-600 hover:bg-purple-50 hover:border-l-4 hover:border-purple-500 hover:pl-4 transition-all ${
+              isActive('/ai-chat') ? 'bg-purple-50 border-l-4 border-purple-500 pl-4' : ''
+            }`}
+          >
+            <i className="fa-solid fa-robot text-xl w-6 text-center mr-3"></i>
+            <span className="font-semibold text-base">AI ЧАТ</span>
+          </Link>
         </div>
 
         {/* Menu Groups */}
